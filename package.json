@@ -1,7 +1,7 @@
 {
-  "name": "translater",
-  "displayName": "translater",
-  "description": "translater",
+  "name": "translator",
+  "displayName": "translator",
+  "description": "translator",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.73.0"
@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:translater"
+    "onCommand:translator"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "translater",
-        "title": "open translater"
+        "command": "translator",
+        "title": "open translator"
       }
     ]
   },
