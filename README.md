@@ -12,8 +12,10 @@ API는 Naver Papago API를 사용합니다.
 
 # Debug
 
-- 해당 repo에서 디버깅을 시작합니다.
-- 새로운 vscode 화면에서 command + shift + p 를 누릅니다.
+- 해당 repo를 clone 합니다.
+- 터미널에서 npm i를 입력합니다.
+- 해당 repo에서 vscode를 엽니다. - 디버깅을 시작합니다.
+- 새로운 vscode 화면에서 command - shift + p 를 누릅니다.
 - 검색창에 open translate를 입력합니다.
 
 ---
