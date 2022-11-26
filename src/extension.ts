@@ -7,9 +7,9 @@ import * as path from "path";
 export function activate(context: vscode.ExtensionContext) {
   const { subscriptions, extensionPath } = context;
 
-  const disposable = vscode.commands.registerCommand("translater", () => {
+  const disposable = vscode.commands.registerCommand("translator", () => {
     subscriptions.push(new WebviewLoader(extensionPath));
-    vscode.window.showInformationMessage("Hello Translater");
+    vscode.window.showInformationMessage("Hello Translator");
   });
   subscriptions.push(disposable);
 
@@ -18,8 +18,8 @@ export function activate(context: vscode.ExtensionContext) {
     -10
   );
 
-  myStatusBarItem.text = "translater";
-  myStatusBarItem.command = "translater";
+  myStatusBarItem.text = "translator";
+  myStatusBarItem.command = "translator";
   subscriptions.push(myStatusBarItem);
 
   // update status bar item once at start

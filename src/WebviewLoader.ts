@@ -1,6 +1,13 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
+const getFileUrl =
+  (base: string, panel: vscode.WebviewPanel) => (url: string) => {
+    const file = vscode.Uri.file(path.join(base, "src", url));
+    const fileUrl = panel.webview.asWebviewUri(file);
+    return fileUrl;
+  };
+
 export default class WebviewLoader implements vscode.Disposable {
   private readonly _panel: vscode.WebviewPanel | undefined;
 
@@ -8,7 +15,7 @@ export default class WebviewLoader implements vscode.Disposable {
     const viewColumn = vscode.ViewColumn.One;
     this._panel = vscode.window.createWebviewPanel(
       "WebviewLoader",
-      "translater",
+      "Translator",
       viewColumn,
       {
         enableScripts: true,
@@ -24,31 +31,15 @@ export default class WebviewLoader implements vscode.Disposable {
   }
 
   getWebviewContent() {
-    const jsAppPathOnDisk = vscode.Uri.file(
-      path.join(this.extensionPath, "src", "index.js")
-    );
-    const fetchAppPathOnDisk = vscode.Uri.file(
-      path.join(this.extensionPath, "src", "fetch.js")
-    );
-    const debounceAppPathOnDisk = vscode.Uri.file(
-      path.join(this.extensionPath, "src", "debounce.js")
-    );
-    const cssAppPathOnDisk = vscode.Uri.file(
-      path.join(this.extensionPath, "src", "index.css")
+    const getPathOnExtensionPath = getFileUrl(
+      this.extensionPath,
+      this._panel as vscode.WebviewPanel
     );
 
-    const jsAppUri = (this._panel as vscode.WebviewPanel).webview.asWebviewUri(
-      jsAppPathOnDisk
-    );
-    const fetchAppUri = (
-      this._panel as vscode.WebviewPanel
-    ).webview.asWebviewUri(fetchAppPathOnDisk);
-    const debounceAppUri = (
-      this._panel as vscode.WebviewPanel
-    ).webview.asWebviewUri(debounceAppPathOnDisk);
-    const cssAppUri = (this._panel as vscode.WebviewPanel).webview.asWebviewUri(
-      cssAppPathOnDisk
-    );
+    const jsAppUri = getPathOnExtensionPath("index.js");
+    const fetchAppUri = getPathOnExtensionPath("fetch.js");
+    const debounceAppUri = getPathOnExtensionPath("debounce.js");
+    const cssAppUri = getPathOnExtensionPath("index.css");
 
     return `<!DOCTYPE html>
     <html lang="en">
